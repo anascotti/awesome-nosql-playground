@@ -1,0 +1,6 @@
+cassandra:
+  contact-points:
+      - hostname: localhost
+        port: 9042
+      - hostname: localhost
+        port: 9142
