@@ -10,7 +10,7 @@ create table users (
     email varchar,
     password varchar,
     reset_token varchar,
-    last_login map<text, timestamp>
+    last_login frozen<tuple<timestamp,inet>>
 ) with comment = 'A table of users';
 
 insert into users (id, first_name, last_name, email)
