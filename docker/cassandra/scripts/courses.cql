@@ -12,17 +12,18 @@ CREATE TABLE courses (
   author varchar static,
   audience int static,
   duration int static,
-  cc boolean static,
+  features set<text> static,
   released timestamp static,
   module_id int,
   module_name varchar,
   module_duration int,
+  clips list<text>,
   PRIMARY KEY (id, module_id)
 ) WITH comment = 'A table of courses';
 
 -- Sample data for courses table
 INSERT INTO courses (id, name, author, audience, duration, cc, released)
-VALUES ('angularjs-get-started','AngularJS: Get Started', 'Scott Allen', 1, 10560, true, '2014-06-05');
+VALUES ('angularjs-get-started','AngularJS: Get Started', 'Scott Allen', 1, 10560, {cc}, '2014-06-05');
 
   INSERT INTO courses (id, module_id, module_name, module_duration)
   VALUES ('angularjs-get-started', 1, 'An Introduction', 2083);
@@ -40,7 +41,7 @@ VALUES ('angularjs-get-started','AngularJS: Get Started', 'Scott Allen', 1, 1056
   VALUES ('angularjs-get-started', 5, 'Routing', 2211);
 
 INSERT INTO courses (id, name, author, audience, duration, cc, released)
-VALUES ('node-intro','Introduction to Node.js', 'Paul O''Fallon', 2, 10080, true, '2012-12-19');
+VALUES ('node-intro','Introduction to Node.js', 'Paul O''Fallon', 2, 10080, {cc}, '2012-12-19');
 
   INSERT INTO courses (id, module_id, module_name, module_duration)
   VALUES ('node-intro', 1, 'Getting Started with Node.js', 2174);
@@ -63,8 +64,8 @@ VALUES ('node-intro','Introduction to Node.js', 'Paul O''Fallon', 2, 10080, true
   INSERT INTO courses (id, module_id, module_name, module_duration)
   VALUES ('node-intro', 7, 'Scaling Your Node Application', 1257);
 
-INSERT INTO courses (id, name, author, audience, duration, cc, released)
-VALUES ('advanced-javascript','Advanced Javascript', 'Kyle Simpson', 2, 24900, false, '2015-04-09');
+INSERT INTO courses (id, name, author, audience, duration, released)
+VALUES ('advanced-javascript','Advanced Javascript', 'Kyle Simpson', 2, 24900, '2015-04-09');
 
   INSERT INTO courses (id, module_id, module_name, module_duration)
   VALUES ('advanced-javascript', 1, 'Introduction', 2408);
@@ -82,7 +83,7 @@ VALUES ('advanced-javascript','Advanced Javascript', 'Kyle Simpson', 2, 24900, f
   VALUES ('advanced-javascript', 5, 'Async Patterns', 3437);
 
 INSERT INTO courses (id, name, author, audience, duration, cc, released)
-VALUES ('docker-fundamentals','Docker Fundamentals', 'Adron Hall', 2, 3780, true, '2014-01-10');
+VALUES ('docker-fundamentals','Docker Fundamentals', 'Adron Hall', 2, 3780, {cc}, '2014-01-10');
 
   INSERT INTO courses (id, module_id, module_name, module_duration)
   VALUES ('docker-fundamentals', 1, 'Introduction and History', 1155);
@@ -97,7 +98,7 @@ VALUES ('docker-fundamentals','Docker Fundamentals', 'Adron Hall', 2, 3780, true
   VALUES ('docker-fundamentals', 4, 'Working Samples', 1003);
 
 INSERT INTO courses (id, name, author, audience, duration, cc, released)
-VALUES ('raspberry-pi-for-developers','Raspberry Pi for Developers', 'Jon Flanders', 2, 8640, true, '2013-05-30');
+VALUES ('raspberry-pi-for-developers','Raspberry Pi for Developers', 'Jon Flanders', 2, 8640, {cc}, '2013-05-30');
 
   INSERT INTO courses (id, module_id, module_name, module_duration)
   VALUES ('raspberry-pi-for-developers', 1, 'Introduction to Raspberry Pi', 1765);
