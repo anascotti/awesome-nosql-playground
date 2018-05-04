@@ -9,7 +9,7 @@ create table users (
     last_name varchar,
     email varchar,
     password varchar,
-    reset_token varchar
+    reset_token varchar,
     last_login map<text, timestamp>
 ) with comment = 'A table of users';
 
