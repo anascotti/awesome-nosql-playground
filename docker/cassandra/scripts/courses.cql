@@ -20,6 +20,7 @@ CREATE TABLE courses (
   duration int static,
   features set<varchar> static,
   released timestamp static,
+  tags set<varchar> static, 
   module_id int,
   module_name varchar,
   module_duration int,
@@ -362,3 +363,6 @@ VALUES ('raspberry-pi-for-developers','Raspberry Pi for Developers', 'Jon Flande
     UPDATE courses SET clips = clips + [{name: 'XBMC Add-ons', duration: 293 }] WHERE id = 'raspberry-pi-for-developers' and module_id = 5;
     UPDATE courses SET clips = clips + [{name: 'Demo: Building an XBMC Add-on', duration: 745 }] WHERE id = 'raspberry-pi-for-developers' and module_id = 5;
     UPDATE courses SET clips = clips + [{name: 'Summary', duration: 9 }] WHERE id = 'raspberry-pi-for-developers' and module_id = 5;
+    
+  UPDATE courses set tags = {'developer', 'open-source'} where id = 'node-intro';
+    
