@@ -20,7 +20,6 @@ CREATE TABLE courses (
   duration int static,
   features set<varchar> static,
   released timestamp static,
-  tags set<varchar> static, 
   module_id int,
   module_name varchar,
   module_duration int,
@@ -29,6 +28,9 @@ CREATE TABLE courses (
 ) WITH comment = 'A table of courses';
 
 -- Sample data for courses table
+
+BEGIN UNLOGGED BATCH
+
 INSERT INTO courses (id, name, author, audience, duration, features, released)
 VALUES ('angularjs-get-started','AngularJS: Get Started', 'Scott Allen', 1, 10560, {'cc'}, '2014-06-05');
 
@@ -95,6 +97,10 @@ VALUES ('angularjs-get-started','AngularJS: Get Started', 'Scott Allen', 1, 1056
     UPDATE courses SET clips = clips + [{name: 'Your Challenge', duration: 91}] WHERE id = 'angularjs-get-started' AND module_id = 5;
     UPDATE courses SET clips = clips + [{name: 'My Solution', duration: 679}] WHERE id = 'angularjs-get-started' AND module_id = 5;
     UPDATE courses SET clips = clips + [{name: 'Summary', duration: 47}] WHERE id = 'angularjs-get-started' AND module_id = 5;
+
+APPLY BATCH;
+
+BEGIN UNLOGGED BATCH
 
 INSERT INTO courses (id, name, author, audience, duration, features, released)
 VALUES ('node-intro','Introduction to Node.js', 'Paul O''Fallon', 2, 10080, {'cc'}, '2012-12-19');
@@ -179,6 +185,10 @@ VALUES ('node-intro','Introduction to Node.js', 'Paul O''Fallon', 2, 10080, {'cc
     UPDATE courses SET clips = clips + [{name: 'Demo: Building a Clustered Web Server', duration: 385 }] WHERE id = 'node-intro' and module_id = 7;
     UPDATE courses SET clips = clips + [{name: 'Conclusion', duration: 28 }] WHERE id = 'node-intro' and module_id = 7;
 
+APPLY BATCH;
+
+BEGIN UNLOGGED BATCH
+
 INSERT INTO courses (id, name, author, audience, duration, features, released)
 VALUES ('advanced-javascript','Advanced Javascript', 'Kyle Simpson', 2, 24900, {}, '2015-04-09');
 
@@ -258,6 +268,10 @@ VALUES ('advanced-javascript','Advanced Javascript', 'Kyle Simpson', 2, 24900, {
     UPDATE courses SET clips = clips + [{name: 'Exercise 5', duration: 151 }] WHERE id = 'advanced-javascript' and module_id = 5;
     UPDATE courses SET clips = clips + [{name: 'Exercise 5 Solution', duration: 1186 }] WHERE id = 'advanced-javascript' and module_id = 5;
 
+APPLY BATCH;
+
+BEGIN UNLOGGED BATCH
+
 INSERT INTO courses (id, name, author, audience, duration, features, released)
 VALUES ('docker-fundamentals','Docker Fundamentals', 'Adron Hall', 2, 3780, {'cc'}, '2014-01-10');
 
@@ -303,6 +317,10 @@ VALUES ('docker-fundamentals','Docker Fundamentals', 'Adron Hall', 2, 3780, {'cc
     UPDATE courses SET clips = clips + [{name: 'Couch DB', duration: 144 }] WHERE id = 'docker-fundamentals' and module_id = 4;
     UPDATE courses SET clips = clips + [{name: 'Riak Service', duration: 392 }] WHERE id = 'docker-fundamentals' and module_id = 4;
     UPDATE courses SET clips = clips + [{name: 'Summary', duration: 55 }] WHERE id = 'docker-fundamentals' and module_id = 4;
+
+APPLY BATCH;
+
+BEGIN UNLOGGED BATCH
 
 INSERT INTO courses (id, name, author, audience, duration, features, released)
 VALUES ('raspberry-pi-for-developers','Raspberry Pi for Developers', 'Jon Flanders', 2, 8640, {'cc'}, '2013-05-30');
@@ -363,6 +381,5 @@ VALUES ('raspberry-pi-for-developers','Raspberry Pi for Developers', 'Jon Flande
     UPDATE courses SET clips = clips + [{name: 'XBMC Add-ons', duration: 293 }] WHERE id = 'raspberry-pi-for-developers' and module_id = 5;
     UPDATE courses SET clips = clips + [{name: 'Demo: Building an XBMC Add-on', duration: 745 }] WHERE id = 'raspberry-pi-for-developers' and module_id = 5;
     UPDATE courses SET clips = clips + [{name: 'Summary', duration: 9 }] WHERE id = 'raspberry-pi-for-developers' and module_id = 5;
-    
-  UPDATE courses set tags = {'developer', 'open-source'} where id = 'node-intro';
-    
+
+APPLY BATCH;
